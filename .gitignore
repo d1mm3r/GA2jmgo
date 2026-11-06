@@ -3,6 +3,9 @@ build/
 *.apk
 *.idsig
 
+# Forum post draft (kept locally only)
+docs/4pda_post.bbcode
+
 # Signing keys — never commit
 *.keystore
 *.jks

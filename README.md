@@ -123,8 +123,6 @@ bash build.sh   # Windows: Git Bash
 ```
 Пути переопределяются переменными `ANDROID_SDK` и `JDK_BIN`. При первой сборке создаётся `debug.keystore` для подписи — в репозиторий он не попадает. Исходники: [`AndroidManifest.xml`](AndroidManifest.xml), [`src/local/mic2assistant/`](src/local/mic2assistant). `targetSdk 25` нужен, чтобы манифестный приёмник получал неявную рассылку на Android 8+.
 
-Пост для форума 4PDA (BBCode): [`docs/4pda_post.bbcode`](docs/4pda_post.bbcode).
-
 ## Лицензия
 
 [MIT](LICENSE). Используете на свой риск: всё обратимо командами из раздела «Откат», но гарантий нет.
