@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Mic2Assistant v2: ловит событие кнопки микрофона пульта JMGO (com.jmgo.action.AI_VOICE),
+  которое рассылает системный сервис com.jmgo.hippo, и открывает Google Ассистента (katniss).
+
+  Имя пакета com.bajintech.assistant взято из белого списка PhoneWindowManager.whitelist
+  прошивки JMGO: пакеты из этого списка не останавливаются принудительно перед сном (STR).
+  Настоящего пакета с таким именем на проекторе нет.
+
+  targetSdk 25 — чтобы манифестные приёмники получали неявные рассылки на Android 8+.
+  WRITE_SECURE_SETTINGS выдаётся через adb: pm grant com.bajintech.assistant android.permission.WRITE_SECURE_SETTINGS
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bajintech.assistant"
+    android:versionCode="3"
+    android:versionName="3.0">
+
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name="local.mic2assistant.App"
+        android:label="Mic2Assistant"
+        android:allowBackup="false">
+
+        <receiver
+            android:name="local.mic2assistant.MicReceiver"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="com.jmgo.action.AI_VOICE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="local.mic2assistant.RestoreReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.DREAMING_STOPPED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>
