@@ -11,7 +11,8 @@
 - Перед сном (STR) прошивка принудительно останавливает все сторонние приложения, кроме зашитого в `services.jar` белого списка (`PhoneWindowManager.clearBackagroundApplication`). Поэтому приложение называется **`com.bajintech.assistant`** — это имя из белого списка, такого пакета на проекторе нет. Так оно переживает сон.
 - Остановка Ассистента перед сном заставляет Android обнулить настройки ассистента. Mic2Assistant следит за ними (`ContentObserver`, `SCREEN_ON`, `BOOT_COMPLETED`, а также при каждом нажатии) и восстанавливает. Для этого нужно право `WRITE_SECURE_SETTINGS`, выдаётся через adb.
 
-## 1. Входные данные (исходное состояние)
+## 2. Runbook
+### Входные данные (исходное состояние)
 
 - JMGO N1 Ultra, китайская версия, Android 9, adb по сети включён.
 - Google-сервисы (GMS, Google Play) установлены, Google-аккаунт добавлен (по инструкциям из темы на 4PDA).
@@ -32,13 +33,11 @@
 | `adb root` / `adb remount` | adbd не получает root |
 | Телефонный Google app (`googlequicksearchbox`) | Упирается в Play Protect, на ТВ неудобен — нужен katniss |
 
-## 2. Playbook
-
 Все команды — на компьютере. IP подставьте свой.
 
 ### Шаг 0. Подключение
 ```bash
-adb connect 192.168.1.XXX:5555
+adb connect 192.168.X.XXX:5555
 adb devices
 ```
 
